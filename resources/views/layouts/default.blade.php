@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>@yield('title','default value')--这里是一个学习标题</title>
+    <title>@yield('title', 'Sample App') - Laravel 入门教程</title>
+    <link rel="stylesheet" href="/css/app.css">
   </head>
   <body>
-    @yield('content')
-    @yield('tip')
+
+	@include('layouts._header')
+
+    <div class="container">
+      @yield('content')
+      @include('layouts._footer')
+    </div>    
   </body>
 </html>
