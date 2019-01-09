@@ -7,6 +7,14 @@ use Auth;
 
 class SessionsController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('guest', [
+            'only' => ['create']
+        ]);
+    } 
+     
 	//登录页面	
     public function create()
     {
@@ -17,8 +25,8 @@ class SessionsController extends Controller
     public function store(Request $request)
     {
        $credentials = $this->validate($request, [
-            'email' => 'required|email|max:255',
-			'password' => 'required'
+          'email' => 'required|email|max:255',
+			    'password' => 'required'
        ]);
 
        if (Auth::attempt($credentials, $request->has('remember'))) {     		
