@@ -34,11 +34,15 @@ class UsersController extends Controller
     }
 
     //显示个人用户
-	public function show(User $user)
+	public function show(User $user)   
     {
+        $statuses = $user->statuses()
+                ->orderBy('created_at', 'desc')
+                ->paginate(30);
+        // var_dump($statuses);exit;
     	// echo $user;exit;
     	// var_dump($user);exit;
-        return view('users.show', compact('user'));
+        return view('users.show', compact('user','statuses'));
     }
 
     //注册用户操作
